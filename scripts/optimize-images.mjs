@@ -70,6 +70,5 @@ for (const f of fs.readdirSync(raw("ig")).filter((f) => f.endsWith(".jpg"))) {
 }
 
 // Open Graph share image
-await sharp(raw(P1, "1768204039907-77a974159ef0.jpg")).resize(1200, 630, { fit: "cover" }).jpeg({ quality: 78 }).toFile(path.join(root, "public", "og-image.jpg"));
 
 console.log("Images optimised.");
