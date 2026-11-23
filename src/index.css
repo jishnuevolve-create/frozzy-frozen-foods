@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream font-sans text-charcoal antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-normal text-emerald-ink;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    @apply bg-gold/50 text-emerald-ink;
+  }
+  :focus-visible {
+    outline: 2px solid #d8b979;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  img {
+    @apply select-none;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-12;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-forest;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-6 bg-gold;
+  }
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-semibold transition duration-200 ease-out active:scale-[0.98];
+  }
+  .btn-primary {
+    @apply btn bg-forest text-cream hover:bg-emerald-ink;
+  }
+  .btn-ghost {
+    @apply btn border border-forest/25 text-forest hover:border-forest hover:bg-forest/5;
+  }
+  .btn-cream {
+    @apply btn bg-cream text-emerald-ink hover:bg-white;
+  }
+  .btn-gold {
+    @apply btn bg-gold text-emerald-ink hover:bg-[#e3c88f];
+  }
+}
+
+/* Scalloped edge — the wavy outline of the FROZZY seal, used between sections */
+.scallop-down,
+.scallop-up {
+  --bump: 26px;
+  height: calc(var(--bump) / 2);
+  background-size: var(--bump) calc(var(--bump) / 2);
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.scallop-down {
+  background-image: radial-gradient(circle at 50% 0, var(--c) calc(var(--bump) / 2 - 0.5px), transparent calc(var(--bump) / 2));
+}
+.scallop-up {
+  background-image: radial-gradient(circle at 50% 100%, var(--c) calc(var(--bump) / 2 - 0.5px), transparent calc(var(--bump) / 2));
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .spin-slow {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
